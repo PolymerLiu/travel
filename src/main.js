@@ -6,9 +6,10 @@ import router from './router'
 // 移动端300ms延迟的问题
 import fastClick from 'fastclick'
 // 样式重置
-import './assets/styles/reset.css'
+import 'styles/reset.css'
 // 一像素边框问题
-import './assets/styles/border.css'
+import 'styles/border.css'
+import 'styles/iconfont.css'
 
 Vue.config.productionTip = false
 fastClick.attach(document.body)

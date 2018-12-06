@@ -1,21 +1,20 @@
 <template>
-  <div class="hello">
-    {{msg}}
+  <div class="">
+    
   </div>
 </template>
 
 <script>
 export default {
-  name: 'HelloWorld',
+  name: '',
   data () {
     return {
-      msg: 'Welcome to Your Vue.js App'
+      msg: ''
     }
   }
 }
 </script>
 
-<!-- Add "scoped" attribute to limit CSS to this component only -->
-<style scoped>
+<style lang="stylus" scoped>
 
 </style>
