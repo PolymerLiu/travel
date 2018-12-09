@@ -18,16 +18,14 @@
 <script>
 export default {
   name: "HomeWeekend",
-  props:[
-    'weekendList'
-  ],
+  props: ["weekendList"],
   data() {
     return {};
   },
-  computed:{
-      showWeekend(){
-          return this.weekendList.length>0
-      }
+  computed: {
+    showWeekend() {
+      return this.weekendList.length > 0;
+    }
   }
 };
 </script>

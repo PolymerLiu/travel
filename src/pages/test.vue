@@ -1,20 +1,13 @@
-<template>
-  <div class="">
-    
-  </div>
-</template>
+<template></template>
 
 <script>
 export default {
-  name: '',
-  data () {
-    return {
-      msg: ''
-    }
+  name: "",
+  data() {
+    return {};
   }
-}
+};
 </script>
 
 <style lang="stylus" scoped>
-
 </style>
