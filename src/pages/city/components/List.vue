@@ -2,86 +2,42 @@
   <div class="list" ref="wrapper">
     <div>
       <div class="area">
-      <div class="title border-topbottom">当前城市</div>
-      <div class="button-list">
-        <div class="button-wrapper">
-          <div class="button">北京</div>
-        </div>
-        <div class="button-wrapper">
-          <div class="button">北京</div>
-        </div>
-        <div class="button-wrapper">
-          <div class="button">北京</div>
-        </div>
-        <div class="button-wrapper">
-          <div class="button">北京</div>
+        <div class="title border-topbottom">当前城市</div>
+        <div class="button-list">
+          <div class="button-wrapper">
+            <div class="button">北京</div>
+          </div>
         </div>
       </div>
-    </div>
-    <div class="area">
-      <div class="title border-topbottom">热门城市</div>
-      <div class="button-list">
-        <div class="button-wrapper">
-          <div class="button">北京</div>
-        </div>
-        <div class="button-wrapper">
-          <div class="button">北京</div>
-        </div>
-        <div class="button-wrapper">
-          <div class="button">北京</div>
-        </div>
-        <div class="button-wrapper">
-          <div class="button">北京</div>
+      <div class="area">
+        <div class="title border-topbottom">热门城市</div>
+        <div class="button-list">
+          <div class="button-wrapper" v-for="item of hotCities" :key="item.id">
+            <div class="button">{{item.name}}</div>
+          </div>
         </div>
       </div>
-    </div>
-    <div class="area">
-      <div class="title border-topbottom">A</div>
-      <div class="item-list">
-        <div class="item border-bottom">阿拉尔</div>
-        <div class="item border-bottom">阿拉尔</div>
-        <div class="item border-bottom">阿拉尔</div>
-        <div class="item border-bottom">阿拉尔</div>
-        <div class="item border-bottom">阿拉尔</div>
-        <div class="item border-bottom">阿拉尔</div>
-        <div class="item border-bottom">阿拉尔</div>
-        <div class="item border-bottom">阿拉尔</div>
-        <div class="item border-bottom">阿拉尔</div>
-        <div class="item border-bottom">阿拉尔</div>
-        <div class="item border-bottom">阿拉尔</div>
-        <div class="item border-bottom">阿拉尔</div>
-        <div class="item border-bottom">阿拉尔</div>
+      <div class="area" v-for="(alpha,key) of cities" :key="key">
+        <div class="title border-topbottom">{{key}}</div>
+        <div class="item-list" v-for="item of alpha" :key="item.id">
+          <div class="item border-bottom">{{item.name}}</div>
+        </div>
       </div>
-      <div class="title border-topbottom">A</div>
-      <div class="item-list">
-        <div class="item border-bottom">阿拉尔</div>
-        <div class="item border-bottom">阿拉尔</div>
-        <div class="item border-bottom">阿拉尔</div>
-        <div class="item border-bottom">阿拉尔</div>
-        <div class="item border-bottom">阿拉尔</div>
-        <div class="item border-bottom">阿拉尔</div>
-        <div class="item border-bottom">阿拉尔</div>
-        <div class="item border-bottom">阿拉尔</div>
-        <div class="item border-bottom">阿拉尔</div>
-        <div class="item border-bottom">阿拉尔</div>
-        <div class="item border-bottom">阿拉尔</div>
-        <div class="item border-bottom">阿拉尔</div>
-        <div class="item border-bottom">阿拉尔</div>
-      </div>
-    </div>
     </div>
   </div>
 </template>
 
 <script>
-import Bscroll from 'better-scroll'
+import Bscroll from "better-scroll";
 export default {
   name: "",
+  props: ["hotCities", "cities"],
   data() {
     return {};
   },
-  mounted(){
-    this.scroll = new Bscroll(this.$refs.wrapper)
+  mounted() {
+    console.log("==========", this.hotCities);
+    this.scroll = new Bscroll(this.$refs.wrapper);
   }
 };
 </script>
@@ -106,12 +62,13 @@ export default {
 }
 
 .list {
-  position absolute
-  overflow hidden
-  top 1.58rem
-  left 0
-  bottom 0
-  right 0
+  position: absolute;
+  overflow: hidden;
+  top: 1.58rem;
+  left: 0;
+  bottom: 0;
+  right: 0;
+
   .title {
     line-height: 0.54rem;
     background: #eee;
