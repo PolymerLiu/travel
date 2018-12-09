@@ -2,7 +2,7 @@
   <div class="">
       <div class="title">热销推荐</div>
       <ul>
-          <li class="item" v-for="item of recommendList" :key="item.id">
+          <li class="item" v-for="item of recommendList" :key="item.id" v-if="showRecommend">
               <img :src="item.imgUrl" alt="" class="item-img">
               <div class="item-info">
                   <p class="item-title">{{item.title}} </p>
@@ -17,46 +17,16 @@
 <script>
 export default {
   name: 'HomeRecommend',
+  props:[
+      'recommendList'
+  ],
   data () {
-    return {
-      recommendList: [{
-        id: '001',
-        imgUrl: 'http://img1.qunarzz.com/sight/p0/1811/d4/d4a663613604238ea3.img.jpg_200x200_b412a8a2.jpg',
-        title: '大连圣亚海洋世界',
-        desc: '浪漫大连首张，浪漫的海洋主题乐园',
-        skip: '查看详情'
-      }, {
-        id: '002',
-        imgUrl: 'http://img1.qunarzz.com/sight/p0/1811/d4/d4a663613604238ea3.img.jpg_200x200_b412a8a2.jpg',
-        title: '大连圣亚海洋世界',
-        desc: '浪漫大连首张，浪漫的海洋主题乐园',
-        skip: '查看详情'
-      }, {
-        id: '003',
-        imgUrl: 'http://img1.qunarzz.com/sight/p0/1811/d4/d4a663613604238ea3.img.jpg_200x200_b412a8a2.jpg',
-        title: '大连圣亚海洋世界',
-        desc: '浪漫大连首张，浪漫的海洋主题乐园',
-        skip: '查看详情'
-      }, {
-        id: '004',
-        imgUrl: 'http://img1.qunarzz.com/sight/p0/1811/d4/d4a663613604238ea3.img.jpg_200x200_b412a8a2.jpg',
-        title: '大连圣亚海洋世界',
-        desc: '浪漫大连首张，浪漫的海洋主题乐园',
-        skip: '查看详情'
-      }, {
-        id: '005',
-        imgUrl: 'http://img1.qunarzz.com/sight/p0/1811/d4/d4a663613604238ea3.img.jpg_200x200_b412a8a2.jpg',
-        title: '大连圣亚海洋世界',
-        desc: '浪漫大连首张，浪漫的海洋主题乐园',
-        skip: '查看详情'
-      }, {
-				id: '006',
-				imgUrl: 'http://img1.qunarzz.com/sight/p0/1811/d4/d4a663613604238ea3.img.jpg_200x200_b412a8a2.jpg',
-				title: '大连圣亚海洋世界',
-				desc: '浪漫大连首张，浪漫的海洋主题乐园',
-				skip: '查看详情'
-      }]
-    }
+    return {}
+  },
+  computed:{
+      showRecommend(){
+          return this.recommendList.length>0
+      }
   }
 }
 </script>

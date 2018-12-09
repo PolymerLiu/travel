@@ -2,7 +2,7 @@
   <div class>
     <div class="title">周末去哪儿</div>
     <ul>
-      <li class="item" v-for="item of recommendList" :key="item.id">
+      <li class="item" v-for="item of weekendList" :key="item.id" v-if="showWeekend">
         <div class="img-wrapper">
           <img :src="item.imgUrl" alt class="item-img">
         </div>
@@ -18,59 +18,16 @@
 <script>
 export default {
   name: "HomeWeekend",
+  props:[
+    'weekendList'
+  ],
   data() {
-    return {
-      recommendList: [
-        {
-          id: "001",
-          imgUrl:
-            "http://img1.qunarzz.com/sight/p0/1811/d4/d4a663613604238ea3.img.jpg_200x200_b412a8a2.jpg",
-          title: "大连圣亚海洋世界",
-          desc: "浪漫大连首张，浪漫的海洋主题乐园",
-          skip: "查看详情"
-        },
-        {
-          id: "002",
-          imgUrl:
-            "http://img1.qunarzz.com/sight/p0/1811/d4/d4a663613604238ea3.img.jpg_200x200_b412a8a2.jpg",
-          title: "大连圣亚海洋世界",
-          desc: "浪漫大连首张，浪漫的海洋主题乐园",
-          skip: "查看详情"
-        },
-        {
-          id: "003",
-          imgUrl:
-            "http://img1.qunarzz.com/sight/p0/1811/d4/d4a663613604238ea3.img.jpg_200x200_b412a8a2.jpg",
-          title: "大连圣亚海洋世界",
-          desc: "浪漫大连首张，浪漫的海洋主题乐园",
-          skip: "查看详情"
-        },
-        {
-          id: "004",
-          imgUrl:
-            "http://img1.qunarzz.com/sight/p0/1811/d4/d4a663613604238ea3.img.jpg_200x200_b412a8a2.jpg",
-          title: "大连圣亚海洋世界",
-          desc: "浪漫大连首张，浪漫的海洋主题乐园",
-          skip: "查看详情"
-        },
-        {
-          id: "005",
-          imgUrl:
-            "http://img1.qunarzz.com/sight/p0/1811/d4/d4a663613604238ea3.img.jpg_200x200_b412a8a2.jpg",
-          title: "大连圣亚海洋世界",
-          desc: "浪漫大连首张，浪漫的海洋主题乐园",
-          skip: "查看详情"
-        },
-        {
-          id: "006",
-          imgUrl:
-            "http://img1.qunarzz.com/sight/p0/1811/d4/d4a663613604238ea3.img.jpg_200x200_b412a8a2.jpg",
-          title: "大连圣亚海洋世界",
-          desc: "浪漫大连首张，浪漫的海洋主题乐园",
-          skip: "查看详情"
-        }
-      ]
-    };
+    return {};
+  },
+  computed:{
+      showWeekend(){
+          return this.weekendList.length>0
+      }
   }
 };
 </script>
@@ -87,7 +44,7 @@ export default {
   .img-wrapper {
     overflow: hidden;
     height: 0;
-    padding-bottom: 33.9%;
+    padding-bottom: 37.09%;
 
     .item-img {
       width: 100%;
