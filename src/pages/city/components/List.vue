@@ -5,21 +5,25 @@
         <div class="title border-topbottom">当前城市</div>
         <div class="button-list">
           <div class="button-wrapper">
-            <div class="button">北京</div>
+            <div class="button">{{this.$store.state.city}}</div>
           </div>
         </div>
       </div>
       <div class="area">
         <div class="title border-topbottom">热门城市</div>
         <div class="button-list">
-          <div class="button-wrapper" v-for="item of hotCities" :key="item.id">
+          <div class="button-wrapper" 
+            v-for="item of hotCities" 
+            :key="item.id"
+            @click="handleCityClick(item.name)"
+          >
             <div class="button">{{item.name}}</div>
           </div>
         </div>
       </div>
       <div class="area" v-for="(alpha,key) of cities" :key="key" :ref="key">
         <div class="title border-topbottom">{{key}}</div>
-        <div class="item-list" v-for="item of alpha" :key="item.id">
+        <div class="item-list" v-for="item of alpha" :key="item.id" @click="handleCityClick(item.name)" >
           <div class="item border-bottom">{{item.name}}</div>
         </div>
       </div>
@@ -34,6 +38,15 @@ export default {
   props: ["hotCities", "cities", "letter"],
   data() {
     return {};
+  },
+  methods:{
+    handleCityClick(city){
+      //vuex dispatch一个事件，然后再commit一个mutations去改变store的数据
+      // this.$store.dispatch('changeCity',city)
+      //或者我们可以绕过dispatch，直接commit一个mutations去改变store的数据
+      this.$store.commit('changeCity',city)
+      this.$router.push('/')
+    }
   },
   mounted() {
     console.log("==========", this.hotCities);
