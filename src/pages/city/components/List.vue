@@ -33,6 +33,8 @@
 
 <script>
 import Bscroll from "better-scroll";
+import { mapMutations } from 'vuex'
+
 export default {
   name: "",
   props: ["hotCities", "cities", "letter"],
@@ -43,13 +45,20 @@ export default {
     handleCityClick(city){
       //vuex dispatch一个事件，然后再commit一个mutations去改变store的数据
       // this.$store.dispatch('changeCity',city)
+
+
       //或者我们可以绕过dispatch，直接commit一个mutations去改变store的数据
-      this.$store.commit('changeCity',city)
+      // this.$store.commit('changeCity',city)
+      // this.$router.push('/')
+
+      //借助mapMutations，我们可以这样
+      this.changeCity(city)
       this.$router.push('/')
-    }
+      
+    },
+    ...mapMutations(['changeCity'])
   },
   mounted() {
-    console.log("==========", this.hotCities);
     this.scroll = new Bscroll(this.$refs.wrapper);
   },
   watch: {
