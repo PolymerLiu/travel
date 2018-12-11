@@ -1,6 +1,6 @@
 <template>
   <div class>
-    <home-header :city="city"></home-header>
+    <home-header></home-header>
     <home-swiper :swiperList="swiperList"></home-swiper>
     <home-icons :iconList="iconList"></home-icons>
     <home-recommend :recommendList="recommendList"></home-recommend>
@@ -15,6 +15,8 @@ import HomeIcons from "./components/Icons";
 import HomeRecommend from "./components/Recommend";
 import HomeWeekend from "./components/Weekend";
 import axios from "axios";
+import { mapState } from "vuex";
+
 export default {
   name: "home",
   components: {
@@ -24,22 +26,24 @@ export default {
     HomeRecommend,
     HomeWeekend
   },
+  computed: {
+    ...mapState(["city"])
+  },
   data() {
     return {
-      city: "",
+      lastCity: "",
       swiperList: [],
       iconList: [],
       recommendList: [],
       weekendList: []
     };
   },
+
   methods: {
     getData() {
-      axios.get("/api/index.json").then(res => {
-        console.log("==========", res.data);
+      axios.get(`/api/index.json?city=${this.city}`).then(res => {
         let data = res.data;
         if (data.resultCode === 0) {
-          this.city = data.city;
           this.swiperList = data.swiperList;
           this.iconList = data.iconList;
           this.recommendList = data.recommendList;
@@ -49,7 +53,16 @@ export default {
     }
   },
   mounted() {
+    this.lastCity = this.city;
+    //页面初次挂载的时候执行
     this.getData();
+  },
+  activated() {
+    //页面被重新显示的时候执行
+    if (this.lastCity !== this.city) {
+      this.lastCity = this.city;
+      this.getData();
+    }
   }
 };
 </script>
