@@ -10,6 +10,7 @@
 import DetailBanner from './components/Banner'
 import DetailHeader from './components/Header'
 import DetailList from './components/List'
+import axios from 'axios'
 export default {
   name: "Detail",
   components:{
@@ -17,26 +18,27 @@ export default {
     DetailHeader,
     DetailList,
   },
+
+  methods:{
+    getDetailInfo(){
+      axios.get('/api/detail.json',{
+        params:{
+          id:this.$route.params.id
+        }
+      }).then((res) => {
+        this.list = res.data.data.categoryList
+        console.log(this.list)
+      })
+    }
+  },
+  //通过keep-alive做缓存，mounted只会执行一次
+  //可以通过对keep-alive设置exclude属性不设置缓存
+  mounted(){
+    this.getDetailInfo()
+  },
   data() {
     return {
-      list:[
-        {
-          title:'成人票',
-          children:[
-            {
-              title:'成人三馆联票',
-              children:[
-                {title:'成人三馆联票1号馆',}
-                ]
-            },
-            {title:'成人五馆联票'},
-            {title:'成人六馆联票'},
-            ]
-        },
-        {title:'儿童票'},
-        {title:'学生票'},
-        {title:'特惠票'},
-      ]
+      list:[]
     };
   }
 };
